@@ -11,10 +11,10 @@
 void GPIO_Module_Init(GPIO_TypeDef *GPIO_Port, uint16 PinNr) {
 
 	/*Enable the modules clock signal*/
-	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
 
 	/*the mode of the gpio (General purpose output, ADC, Alternate function or Input)*/
-	GPIO_Port->MODER |= (GPIO_DRIVER_ANALOG_MODE) << (2 * PinNr);
+	GPIO_Port->MODER |= (GPIO_DRIVER_OUTPUT_MODE) << (2 * PinNr);
 	/*the type of the output is push-pull (open-drain is only needed for the I2C communication)*/
 	GPIO_Port->OTYPER |= (GPIO_DRIVER_OUTPUT_PP) << (PinNr);
 	/*the slew rate of the pin*/
